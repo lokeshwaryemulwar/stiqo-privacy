@@ -3,120 +3,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stiqo - Privacy Policy</title>
+    <title>Stiqo — Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --brand: #6366F1;
+            --brand-dark: #4338CA;
+            --brand-soft: #818CF8;
+            --brand-glow: rgba(99, 102, 241, 0.15);
+            --bg: #0D0D0D;
+            --surface: #141414;
+            --card: #1A1A1A;
+            --elevated: #232326;
+            --border: #2C2C2E;
+            --text-primary: #F5F5F7;
+            --text-secondary: #8E8E93;
+            --text-muted: #636366;
+            --success: #22C55E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
             line-height: 1.7;
-            color: #333;
-            background: #fafafa;
-            padding: 2rem 1rem;
+            min-height: 100vh;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 600px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
-        h1 {
-            font-size: 1.8rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
         }
-        .updated {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
-        h2 {
-            font-size: 1.2rem;
-            color: #1a1a2e;
-            margin-top: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        p, li {
-            color: #555;
-            margin-bottom: 0.8rem;
-        }
-        ul { padding-left: 1.5rem; }
-        .highlight {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 1rem 1.2rem;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-        }
-        .highlight p { color: #2e7d32; margin: 0; font-weight: 500; }
-        a { color: #5c6bc0; }
-        footer {
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            margin-top: 2rem;
-            color: #aaa;
+            padding: 4rem 1.5rem 3rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-soft));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--brand-soft));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .updated-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.35rem 0.9rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .updated-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* Privacy highlight card */
+        .privacy-hero {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(99, 102, 241, 0.08));
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .privacy-hero .shield {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .privacy-hero p {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .privacy-hero .highlight-text {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-number {
+            width: 32px;
+            height: 32px;
+            background: var(--brand-glow);
+            color: var(--brand-soft);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+
+        .section ul li {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--brand);
+            border-radius: 50%;
+        }
+
+        /* No-data chips */
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.85rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .chip .icon {
+            font-size: 0.85rem;
+        }
+
+        /* Permissions */
+        .perm-grid {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .perm-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .perm-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .perm-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .perm-desc {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-top: 0.15rem;
+        }
+
+        /* Deletion section */
+        .delete-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .delete-option {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .delete-option .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .delete-option .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact */
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-top: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--brand);
+            background: var(--elevated);
+        }
+
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--brand-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .contact-email {
+            font-size: 0.95rem;
+            color: var(--brand-soft);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            border-top: 1px solid var(--border);
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        footer .made-with {
+            margin-top: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            header { padding: 3rem 1rem 2rem; }
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 0 1rem 3rem; }
+            .section { padding: 1.5rem; }
+            .privacy-hero { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .delete-options { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🎯</div>
+            <span class="logo-text">Stiqo</span>
+        </div>
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">Your data. Your device. Your control.</p>
+        <div class="updated-badge">
+            <span class="dot"></span>
+            Last updated: October 13, 2026
+        </div>
+    </header>
+
     <div class="container">
-        <h1>🔒 Privacy Policy</h1>
-        <p class="updated">Last updated: October 13, 2026</p>
-
-        <p>Stiqo ("we", "our", or "the app") is a private habit tracker built with your privacy as the top priority. This policy explains how we handle your information.</p>
-
-        <div class="highlight">
-            <p>✅ Stiqo does NOT collect, store, or transmit any personal data to external servers. All your data stays 100% on your device.</p>
+        <!-- Privacy Hero -->
+        <div class="privacy-hero">
+            <span class="shield">🛡️</span>
+            <p>
+                Stiqo is built with a <span class="highlight-text">privacy-first</span> approach. 
+                Your habits, streaks, and personal data <span class="highlight-text">never leave your device</span>. 
+                No accounts. No cloud. No tracking. Ever.
+            </p>
         </div>
 
-        <h2>1. Information We Collect</h2>
-        <p><strong>None.</strong> Stiqo does not collect any personal information, usage data, analytics, or device identifiers. The app works entirely offline.</p>
+        <!-- Section 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Information We Collect</h2>
+            </div>
+            <p><strong>Absolutely nothing.</strong> Stiqo does not collect any personal information, usage data, analytics, or device identifiers. The app operates entirely offline on your device.</p>
+        </div>
 
-        <h2>2. Data Storage</h2>
-        <p>All data you create within Stiqo (habits, streaks, notes, settings) is stored locally on your device using on-device storage. This data never leaves your device unless you explicitly choose to export it.</p>
+        <!-- Section 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Data Storage</h2>
+            </div>
+            <p>All data you create within Stiqo — habits, streaks, notes, and settings — is stored <strong>locally on your device</strong> using secure on-device storage. This data never leaves your device unless you explicitly choose to export a backup file.</p>
+        </div>
 
-        <h2>3. Third-Party Services</h2>
-        <p>Stiqo does not integrate with any third-party analytics, advertising, or tracking services. The app contains:</p>
-        <ul>
-            <li>No ads</li>
-            <li>No analytics or tracking SDKs</li>
-            <li>No social media integrations</li>
-            <li>No cloud syncing</li>
-        </ul>
+        <!-- Section 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>Third-Party Services</h2>
+            </div>
+            <p>Stiqo does not integrate with any third-party analytics, advertising, or tracking services.</p>
+            <div class="chip-row">
+                <span class="chip"><span class="icon">🚫</span> No Ads</span>
+                <span class="chip"><span class="icon">🚫</span> No Analytics</span>
+                <span class="chip"><span class="icon">🚫</span> No Tracking</span>
+                <span class="chip"><span class="icon">🚫</span> No Cloud Sync</span>
+                <span class="chip"><span class="icon">🚫</span> No Social SDKs</span>
+            </div>
+        </div>
 
-        <h2>4. Permissions</h2>
-        <p>Stiqo may request the following device permissions:</p>
-        <ul>
-            <li><strong>Notifications:</strong> To send you habit reminders that you configure</li>
-            <li><strong>Exact Alarms:</strong> To schedule reminders at specific times</li>
-            <li><strong>Storage (optional):</strong> Only when you choose to export/import backup files</li>
-        </ul>
-        <p>These permissions are used solely for the stated purposes and do not involve any data transmission.</p>
+        <!-- Section 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>Permissions</h2>
+            </div>
+            <p>Stiqo may request the following device permissions, used solely for their stated purposes:</p>
+            <div class="perm-grid">
+                <div class="perm-item">
+                    <span class="perm-icon">🔔</span>
+                    <div>
+                        <div class="perm-label">Notifications</div>
+                        <div class="perm-desc">To send habit reminders you configure</div>
+                    </div>
+                </div>
+                <div class="perm-item">
+                    <span class="perm-icon">⏰</span>
+                    <div>
+                        <div class="perm-label">Exact Alarms</div>
+                        <div class="perm-desc">To schedule reminders at specific times</div>
+                    </div>
+                </div>
+                <div class="perm-item">
+                    <span class="perm-icon">📁</span>
+                    <div>
+                        <div class="perm-label">Storage (optional)</div>
+                        <div class="perm-desc">Only when you export or import backup files</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <h2>5. Data Sharing</h2>
-        <p>We do not share, sell, rent, or trade any user data with third parties. Since no data is collected, there is nothing to share.</p>
+        <!-- Section 5 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Data Sharing</h2>
+            </div>
+            <p>We do not share, sell, rent, or trade any user data with third parties. Since <strong>no data is collected</strong>, there is nothing to share.</p>
+        </div>
 
-        <h2>6. Children's Privacy</h2>
-        <p>Stiqo is not directed at children under 13. We do not knowingly collect information from children.</p>
+        <!-- Section 6 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>Children's Privacy</h2>
+            </div>
+            <p>Stiqo is not directed at children under 13. We do not knowingly collect information from children.</p>
+        </div>
 
-        <h2>7. Data Deletion</h2>
-        <p>Since all data is stored locally on your device, you can delete all app data at any time by:</p>
-        <ul>
-            <li>Using the "Clear Data" option in your device's App Settings</li>
-            <li>Uninstalling the app</li>
-        </ul>
+        <!-- Section 7 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2>Data Deletion</h2>
+            </div>
+            <p>Since all data is stored locally, you have <strong>full control</strong> to delete it anytime:</p>
+            <div class="delete-options">
+                <div class="delete-option">
+                    <div class="icon">⚙️</div>
+                    <div class="label">Clear Data in<br>App Settings</div>
+                </div>
+                <div class="delete-option">
+                    <div class="icon">🗑️</div>
+                    <div class="label">Uninstall<br>the App</div>
+                </div>
+            </div>
+        </div>
 
-        <h2>8. Changes to This Policy</h2>
-        <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated revision date.</p>
+        <!-- Section 8 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2>Changes to This Policy</h2>
+            </div>
+            <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated revision date.</p>
+        </div>
 
-        <h2>9. Contact Us</h2>
-        <p>If you have any questions about this privacy policy, please contact us at:</p>
-        <p>📧 <a href="mailto:stiqo.support@gmail.com">stiqo.support@gmail.com</a></p>
-
-        <footer>
-            <p>© 2026 Stiqo. All rights reserved.</p>
-        </footer>
+        <!-- Section 9 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2>Contact Us</h2>
+            </div>
+            <p>Have questions about this privacy policy? Reach out anytime.</p>
+            <a href="mailto:stiqo.support@gmail.com" class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div>
+                    <div class="contact-label">Email us</div>
+                    <div class="contact-email">stiqo.support@gmail.com</div>
+                </div>
+            </a>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2026 Stiqo. All rights reserved.</p>
+        <p class="made-with">Built with 💜 for your privacy</p>
+    </footer>
 </body>
 </html>
